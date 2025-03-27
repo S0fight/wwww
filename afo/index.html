@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>блудный сын / ликвидатор 🏴</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(45deg, #00b7eb, #8a2be2, #00b7eb);
+            background-size: 400%;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: gradientAnimation 15s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.3)" /><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.2)" /><circle cx="90" cy="20" r="3" fill="rgba(255,255,255,0.4)" /><circle cx="30" cy="80" r="2" fill="rgba(255,255,255,0.3)" /><circle cx="70" cy="60" r="1" fill="rgba(255,255,255,0.2)" /></svg>');
+            background-size: 200px 200px;
+            animation: particleAnimation 20s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes particleAnimation {
+            0% { background-position: 0 0; }
+            100% { background-position: 200px 200px; }
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 183, 235, 0.5);
+            animation: fadeIn 2s ease-in-out;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            max-height: 95vh;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .btn-custom {
+            background: linear-gradient(45deg, #00b7eb, #0077b6);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: all 0.3s ease-in-out;
+            margin: 3px;
+            box-shadow: 0 0 15px rgba(0, 183, 235, 0.5);
+            animation: btnPop 0.5s ease-in-out forwards;
+            opacity: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-custom::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn-custom:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-custom:nth-child(1) { animation-delay: 0.2s; }
+        .btn-custom:nth-child(2) { animation-delay: 0.4s; }
+        .btn-custom:nth-child(3) { animation-delay: 0.6s; }
+        .btn-custom:nth-child(4) { animation-delay: 0.8s; }
+        .btn-custom:nth-child(5) { animation-delay: 1.0s; }
+        .btn-custom:nth-child(6) { animation-delay: 1.2s; }
+        .btn-custom:nth-child(7) { animation-delay: 1.4s; }
+        .btn-custom:nth-child(8) { animation-delay: 1.6s; }
+
+        .btn-custom:hover {
+            background: linear-gradient(45deg, #0077b6, #00b7eb);
+            transform: scale(1.1) rotate(3deg);
+            box-shadow: 0 0 25px rgba(0, 183, 235, 0.8);
+        }
+
+        h1, h3 {
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 5px 0;
+            color: #00b7eb;
+            text-shadow: 0 0 10px rgba(0, 183, 235, 0.5);
+        }
+
+        .nickname {
+            font-size: 14px;
+            font-weight: 700;
+            color: #00b7eb;
+            text-shadow: 0 0 10px rgba(0, 183, 235, 0.5);
+            margin-bottom: 5px;
+        }
+
+        img.avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #00b7eb;
+            box-shadow: 0 0 20px rgba(0, 183, 235, 0.8);
+            margin-bottom: 8px;
+            animation: pulse 2s infinite;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 20px rgba(0, 183, 235, 0.8); }
+            50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(0, 183, 235, 1); }
+            100% { transform: scale(1); box-shadow: 0 0 20px rgba(0, 183, 235, 0.8); }
+        }
+
+        @keyframes btnPop {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .custom-audio-player {
+            width: 100%;
+            max-width: 300px;
+            background: linear-gradient(45deg, #222, #333);
+            border-radius: 15px;
+            padding: 8px;
+            box-shadow: 0 0 20px rgba(0, 183, 235, 0.5);
+            margin: 10px auto;
+            transition: all 0.3s ease;
+        }
+
+        .custom-audio-player:hover {
+            box-shadow: 0 0 30px rgba(0, 183, 235, 0.8);
+            transform: scale(1.02);
+        }
+
+        .play-pause-btn {
+            background: linear-gradient(45deg, #00b7eb, #0077b6);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 183, 235, 0.5);
+            animation: pulseBtn 2s infinite;
+            margin-right: 5px;
+        }
+
+        @keyframes pulseBtn {
+            0% { box-shadow: 0 0 10px rgba(0, 183, 235, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(0, 183, 235, 1); }
+            100% { box-shadow: 0 0 10px rgba(0, 183, 235, 0.5); }
+        }
+
+        .play-pause-btn:hover {
+            background: linear-gradient(45deg, #0077b6, #00b7eb);
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #333, #444);
+            border-radius: 5px;
+            margin: 5px 0;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .progress-container:hover {
+            box-shadow: 0 0 10px rgba(0, 183, 235, 0.5);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #00b7eb, #0077b6);
+            border-radius: 5px;
+            width: 0;
+            transition: width 0.3s ease-in-out;
+            box-shadow: 0 0 10px rgba(0, 183, 235, 0.7);
+        }
+
+        .progress-bar::after {
+            display: none;
+        }
+
+        .time-display {
+            font-size: 9px;
+            color: #ccc;
+            text-shadow: 0 0 5px rgba(0, 183, 235, 0.3);
+        }
+
+        .volume-container {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .volume-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .volume-icon:hover {
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 5px rgba(0, 183, 235, 0.7));
+        }
+
+        .volume-slider {
+            -webkit-appearance: none;
+            width: 70px;
+            height: 4px;
+            background: #555;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 8px;
+            height: 8px;
+            background: #00b7eb;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 183, 235, 0.7);
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 8px;
+            height: 8px;
+            background: #00b7eb;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 183, 235, 0.7);
+        }
+
+        .volume-slider:hover {
+            background: #777;
+        }
+
+        p {
+            font-size: 11px;
+            color: #ccc;
+            margin-top: 10px;
+            text-shadow: 0 0 5px rgba(0, 183, 235, 0.3);
+        }
+
+        a {
+            color: #00b7eb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #0077b6;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Убрали <div class="nickname">блудный сын / ликвидатор 🏴</div> -->
+        <img class="avatar" src="image/image.png" alt="Аватар">
+        <!-- Заменили xeo (kseo) на блудный сын / ликвидатор 🏴 -->
+        <h1>блудный сын / ликвидатор 🏴</h1>
+        <h3>ОБО МНЕ</h3>
+        <p>
+            Reverse-инженер, 19 лет, Был в командах "Аукцион Пальцев" и "Shapito", Работаю на даркнет маркетплейсах (Rutor, BlackSprut), изучаю Пентест и нетворкинг. Занимаюсь Гос. Пробивами и силовыми услугами.
+        </p>
+        <h3>НАВЫКИ</h3>
+        <div class="d-flex flex-wrap justify-content-center">
+            <button class="btn-custom">Osint</button>
+            <button class="btn-custom">GeoInt</button>
+            <button class="btn-custom">SocInt</button>
+            <button class="btn-custom">CsInt</button>
+            <button class="btn-custom">Pentest</button>
+            <button class="btn-custom">Networking</button>
+            <button class="btn-custom">DDoS</button>
+            <button class="btn-custom">Reverse-Engineering</button>
+        </div>
+        <h3 class="mt-4">ССЫЛКИ</h3>
+        <div class="d-flex flex-wrap justify-content-center">
+            <a href="https://t.me/blydnblibio" target="_blank" class="btn-custom">Био 1</a>
+            <a href="https://t.me/obsysdeniablyd" target="_blank" class="btn-custom">Био 2</a>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center">
+            <a href="https://t.me/dkKNajs" target="_blank" class="btn-custom">Отзывы</a>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center">
+            <a href="https://t.me/services" target="_blank" class="btn-custom">Услуги</a>
+        </div>
+        <div class="mt-4">
+            <div class="custom-audio-player">
+                <audio id="audio" src="music/Tyler, The Creator - New magic wand.mp3"></audio>
+                <div class="d-flex align-items-center">
+                    <button class="play-pause-btn" onclick="togglePlay()">
+                        <svg id="play-icon" width="18" height="18" viewBox="0 0 24 24" fill="white">
+                            <polygon points="5,3 19,12 5,21" />
+                        </svg>
+                        <svg id="pause-icon" width="18" height="18" viewBox="0 0 24 24" fill="white" style="display: none;">
+                            <rect x="6" y="4" width="4" height="16" />
+                            <rect x="14" y="4" width="4" height="16" />
+                        </svg>
+                    </button>
+                    <div class="progress-container" onclick="setProgress(event)">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                </div>
+                <div class="time-display">
+                    <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+                </div>
+                <div class="volume-container">
+                    <svg class="volume-icon" viewBox="0 0 24 24" fill="white">
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                    </svg>
+                    <input type="range" min="0" max="1" step="0.01" value="1" class="volume-slider" oninput="setVolume(this.value)">
+                </div>
+            </div>
+        </div>
+        <p class="mt-4">© 2025 xeo | xeodark. Все права защищены.<br>Связь со мной: <a href="https://t.me/lickvidatorrrr">t.me/lickvidatorrrr</a></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const audio = document.getElementById('audio');
+        const playBtn = document.querySelector('.play-pause-btn');
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+        const progressBar = document.getElementById('progress-bar');
+        const currentTimeEl = document.getElementById('current-time');
+        const durationEl = document.getElementById('duration');
+
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+            } else {
+                audio.pause();
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+            }
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            const currentTime = audio.currentTime;
+            const duration = audio.duration;
+            const progressPercent = (currentTime / duration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+
+            currentTimeEl.textContent = formatTime(currentTime);
+            durationEl.textContent = formatTime(duration);
+        });
+
+        function setProgress(event) {
+            const progressContainer = event.currentTarget;
+            const clickX = event.offsetX;
+            const width = progressContainer.offsetWidth;
+            const duration = audio.duration;
+            audio.currentTime = (clickX / width) * duration;
+        }
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        audio.addEventListener('loadedmetadata', () => {
+            durationEl.textContent = formatTime(audio.duration);
+        });
+
+        function setVolume(value) {
+            audio.volume = value;
+        }
+    </script>
+</body>
+</html>
